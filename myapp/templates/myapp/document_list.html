@@ -1,0 +1,9 @@
+<h1>Articles</h1>
+<ul>
+{% for article in object_list %}
+{% if article.user.is_authenticated %}
+   <li>{{article.user}}</li>
+    <li>{{ article.date_published|date }} - {{ article.doc }}</li>
+{% endif %}
+{% endfor %}
+</ul>

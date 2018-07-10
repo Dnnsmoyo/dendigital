@@ -1,0 +1,12 @@
+<!DOCTYPEHTML>
+<html>
+<head>
+<title>My Website</title>
+</head>
+<body>
+<h1>Introduction</h1>
+<h2>Contents</h2>
+<h3>Overview</h3>
+</body>
+<img src="https://www.mypictures.com" >
+</html>

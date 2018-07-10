@@ -1,0 +1,86 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Profile</title>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+       	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+</head>
+<style>
+body{background-color:#181818;}
+</style>
+<body>
+	<header class="navbar navbar-static-top navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+                           <!-- Header -->
+			<header id="header">
+				<nav class="left">
+					<a href="#menu"><span>Menu</span></a>
+				</nav>
+				<a href="#" class="logo">Digital</a>
+				<nav class="right">
+					<a href="accounts/login" class="button alt">Log out</a>
+				</nav>
+			</header>
+
+		<!-- Menu -->
+			<nav id="menu" class="navbar-bg-light">
+				<ul class="links" class="navbar-nav">
+                                       <h3 style="color:red">{{request.user}}</h3>
+					<li><a href="/">Home</a></li>
+					<li><a href="chat">Chat</a></li>
+					<li><a href="profile_create">Account</a></li>
+				</ul>
+				<ul class="actions vertical">
+					<li><a href="accounts/logout" class="button fit">Logout</a></li>
+				</ul>
+</nav>
+			</nav>
+		</div>
+	</header>
+<br><br>
+<a href="{% url 'prof-update' user.pk  %}" style="text-decoration:none; font-size:25px">Edit Profile</a>
+<center>
+<a href="#"><img style="border:1px solid black;border-radius:90%" src="{{object.picture.url}}" width="250" height="250"></a>
+<a href="#"><ul style="font-size:30px"></a>
+<li>{{object.user}}</li>
+<li>{{object.country}}</li>
+<li>{{object.gender}}</li>
+</ul>
+</center>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<h2>Get In Touch</h2>
+					<ul class="actions">
+						<li><span class="icon fa-phone"></span> <a href="#">(000) 000-0000</a></li>
+						<li><span class="icon fa-envelope"></span> <a href="#">information@untitled.tld</a></li>
+						<li><span class="icon fa-map-marker"></span> 123 Somewhere Road, Nashville, TN 00000</li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>. Images <a href="https://unsplash.com">Unsplash</a>.
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'assets/js/skel.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+

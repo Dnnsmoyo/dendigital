@@ -1,0 +1,188 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<!--
+	Intensify by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Digital</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+          <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+<style>
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+</style>
+	</head>
+	<body ng-app="myApp">
+
+		<!-- Header -->
+			<header id="header">
+				<nav class="left">
+					<a href="#menu"><span>Menu</span></a>
+				</nav>
+				<a href="#" class="logo">Digital</a>
+                                {% if user.is_authenticated %}
+				<nav class="right">
+					<a href="logout" class="button alt">Log out</a>
+				</nav>
+                                {% else %}
+                                <nav class="right">
+					<a href="login" class="button alt">Log in</a>
+				</nav>
+                               {% endif %}
+			</header>
+
+		<!-- Menu -->
+			<nav id="menu">
+                        {% if user.is_authenticated %}
+                            <h3 style="color:red">{{request.user}}</h3>
+				<ul class="links">
+					<li><a href="/">Home</a></li>
+					<li><a href="chat">Chat</a></li>
+					<li><a href="profile_create">Account</a></li>
+                                        <li><a href="upload-doc">Documents</a></li>
+				</ul>
+				<ul class="actions vertical">
+					<li><a href="login" class="button fit">Login</a></li>
+				</ul>
+                         {% else %}
+                       	<div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  <strong>Whoa!</strong> Login to view Menu
+</div>
+
+				<ul class="actions vertical">
+					<li><a href="login" class="button fit">Login</a></li>
+				</ul>
+                          {% endif %}
+			</nav>
+                   <div ng-view></div>
+{% for p in profiles %}
+<img src="{{p.picture.url}}">
+{% endfor %}
+		<!-- Banner -->
+			<section id="banner">
+				<div class="content">
+					<h1>Signup Today!</h1>
+					<p>Offering a variety of services.<br />Create an account to get started today.</p>
+					<ul class="actions">
+						<li><a href="signup" class="button scrolly">Get Started</a></li>
+					</ul>
+				</div>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="wrapper">
+				<div class="inner flex flex-3">
+					<div class="flex-item left">
+						<div>
+							<h3>Storage</h3>
+							<p>Store documents in the cloud<br />Secure storage.</p>
+						</div>
+						<div>
+							<h3>Collaboration</h3>
+							<p>Real time chat.<br /> Share ideas in real time.</p>
+						</div>
+					</div>
+					<div class="flex-item image fit round">
+						<img src="{% static 'images/pic01.jpg' %}" alt="" />
+					</div>
+					<div class="flex-item right">
+						<div>
+							<h3>Integration</h3>
+							<p>Access our REST API. <br /> Integrate data into your own project.</p>
+						</div>
+						<div>
+							<h3>Push notifications</h3>
+							<p>Subscribe to real-time notifications.<br />Get updated on new activities.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		<!-- Two -->
+			<section id="two" class="wrapper style1 special" style="background-color:#181818">
+				<div class="inner">
+					<figure>
+					    <blockquote>
+					        "There is a growing need for real time applications in the modern world. <br /> Real time is important for any business driven application."
+					    </blockquote>
+					    <footer>
+					        <cite class="author">Dennis Moyo</cite>
+					        <cite class="company">CEO, Digital</cite>
+					    </footer>
+					</figure>
+				</div>
+			</section>
+
+		<!-- Three -->
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<h2>Get In Touch</h2>
+					<ul class="actions">
+						<li><span class="icon fa-phone"></span> <a href="#">(263) 777-250-175</a></li>
+						<li><span class="icon fa-envelope"></span> <a href="#">dnnsmoyo@gmail.com</a></li>
+						<li><span class="icon fa-map-marker"></span> Zimbabwe, Bulawayo</li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; 2018.
+                                </div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'assets/js/skel.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+                        <script>
+                         var app = angular.module("myApp", ["ngRoute"]);
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/", {
+        templateUrl : "templates/index2.html"
+    })
+    .when("/chat", {
+        templateUrl : "templates/broadcast_chat.html"
+    })
+    .when("signup", {
+        templateUrl : "templates/account/signup.html"
+    })
+    .when("/accounts/login", {
+        templateUrl : "templates/account/login.html"
+    });
+    .when("/profile_create", {
+        templateUrl : "templates/myapp/profile_form.html"
+    });
+});
+
+
+	</body>
+</html>
