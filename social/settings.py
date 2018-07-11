@@ -25,7 +25,7 @@ SECRET_KEY = '3i-(hnf+-x5b!h^rzq7j3ipvh8ky_uo!ac$24qi41c0-7-aryf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -112,6 +112,12 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    "default": {
+         "BACKEND": "redis_cache.RedisCache",
+         "LOCATION": os.environ.get('REDIS_URL'),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -154,3 +160,6 @@ STATIC_ROOT = os.path.join(BASE_DIR,'/static/')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'/media/')
+
+django_heroku.settings(locals())
+

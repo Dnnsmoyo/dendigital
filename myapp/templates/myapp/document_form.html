@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>New Profile</title>
+  <title>Upload</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -32,14 +32,4 @@
 <div ng-app="myApp" ng-controller="myCtrl"> 
 </div>
 </div>
-<a href="doclist">View</a>
-
-<script>
-var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope, $http) {
-  $http.get("http://localhost:8000/prof")
-  .then(function(response) {
-      $scope.profiles = response.data;
-  });
-});
-</script>
+<center><a href="doclist">View</a></center>

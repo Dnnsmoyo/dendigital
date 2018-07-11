@@ -1,9 +1,110 @@
-<h1>Articles</h1>
+{% load staticfiles %}
+{% load active_link_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Docs</title>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+       	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+</head>
+<style>
+body{background-color:#181818;}
+</style>
+<body>
+	<header class="navbar navbar-static-top navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+                           <!-- Header -->
+			<header id="header">
+				<nav class="left">
+					<a href="#menu"><span>Menu</span></a>
+				</nav>
+				<a href="#" class="logo">Digital</a>
+				<nav class="right">
+					<a href="login" class="button alt">Log out</a>
+				</nav>
+			</header>
+
+		<!-- Menu -->
+			<nav id="menu">
+				<ul class="links">
+                                           <h3 style="color:red">{{request.user}}</h3>
+					<li><a href="/">Home</a></li>
+					<li><a href="chat">Chat</a></li>
+					<li><a href="profile_create">Account</a></li>
+                                        <li><a href="upload-doc">Documents</a></li>
+				</ul>
+				<ul class="actions vertical">
+					<li><a href="logout" class="button fit">Logout</a></li>
+				</ul>
+</nav>
+			</nav>
+		</div>
+	</header>
+
+<h1>Recent</h1>
 <ul>
 {% for article in object_list %}
 {% if article.user.is_authenticated %}
    <li>{{article.user}}</li>
-    <li>{{ article.date_published|date }} - {{ article.doc }}</li>
+    <li><a href="{% url 'doc-detail' user.pk %}">{{ article.date_published|date }} - {{ article.doc }}</a></li>
 {% endif %}
 {% endfor %}
 </ul>
+<br><br>
+<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<h2>Get In Touch</h2>
+					<ul class="actions">
+						<li><span class="icon fa-phone"></span> <a href="#">(263) 777-250-175</a></li>
+						<li><span class="icon fa-envelope"></span> <a href="#">dnnsmoyo@gmail.com</a></li>
+						<li><span class="icon fa-map-marker"></span> Zimbabwe, Bulawayo</li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; 2018.
+                                </div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'assets/js/skel.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+                        <script>
+                         var app = angular.module("myApp", ["ngRoute"]);
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/", {
+        templateUrl : "templates/index2.html"
+    })
+    .when("/chat", {
+        templateUrl : "templates/broadcast_chat.html"
+    })
+    .when("signup", {
+        templateUrl : "templates/account/signup.html"
+    })
+    .when("/accounts/login", {
+        templateUrl : "templates/account/login.html"
+    });
+    .when("/profile_create", {
+        templateUrl : "templates/myapp/profile_form.html"
+    });
+});
+
+
+	</body>
+</html>
